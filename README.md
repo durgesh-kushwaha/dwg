@@ -1,2 +1,6 @@
 # DWG Tracker
-"# dwg" 
+---
+## Credit
+### Durgesh Kushwaha
+---
+### Made with ❤️ by Durgesh Kushwaha
