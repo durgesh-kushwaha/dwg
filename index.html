@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DWG Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <h1>DWG Tracker</h1>
+      <p class="header-tagline">Quickly check if a drawing is already used</p>
+    </div>
+    <div class="header-right">
+      <span class="badge">Offline · Local Storage</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <div class="card-header">
+        <div>
+          <h2>Add / Edit Drawing</h2>
+          <p class="card-subtitle">
+            Fill DWG Number and DWG Name. If the DWG Number already exists, it will be updated instead of creating a duplicate.
+          </p>
+        </div>
+        <div class="card-tag">
+          <span class="pill pill-accent">Step 1 · Add details</span>
+        </div>
+      </div>
+
+      <form id="dwg-form">
+        <input type="hidden" id="record-id" />
+
+        <div class="form-grid">
+          <div>
+            <label for="dwg-number">DWG Number <span class="required">*</span></label>
+            <input type="text" id="dwg-number" placeholder="e.g. DWG-2025-001" required />
+          </div>
+          <div>
+            <label for="dwg-name">DWG Name <span class="required">*</span></label>
+            <input type="text" id="dwg-name" placeholder="e.g. Column Layout – Block A" required />
+          </div>
+          <div>
+            <label for="project-name">Project / Site</label>
+            <input type="text" id="project-name" placeholder="e.g. Tower A – Project XYZ" />
+          </div>
+          <div>
+            <label for="status">Status</label>
+            <select id="status">
+              <option value="Planned">Planned</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Completed">Completed</option>
+              <option value="Archived">Archived</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="notes-wrapper">
+          <label for="notes">Notes</label>
+          <textarea id="notes" placeholder="Any extra info (e.g. revision details, special instructions)"></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-secondary" id="reset-form-btn">Clear Form</button>
+          <button type="submit" class="btn-primary" id="save-btn">Save Drawing</button>
+        </div>
+        <div class="small-text">
+          * Required fields. Click on a row in the table below to edit that entry quickly.
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <div>
+          <h2>Search & List</h2>
+          <p class="card-subtitle">
+            Search by DWG Number, DWG Name, or Project. Click on a row to load it into the form for editing.
+          </p>
+        </div>
+        <div class="card-tag">
+          <span class="pill pill-soft">Step 2 · Search drawings</span>
+        </div>
+      </div>
+
+      <div class="search-row">
+        <div class="search-input-wrapper">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search DWG Number / Name / Project..."
+          />
+          <span class="search-icon">🔍</span>
+        </div>
+        <select id="filter-status">
+          <option value="all">All Status</option>
+          <option value="Planned">Planned</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Completed">Completed</option>
+          <option value="Archived">Archived</option>
+        </select>
+        <button type="button" class="btn-secondary" id="clear-filters-btn">Clear Filters</button>
+        <button type="button" class="btn-danger" id="clear-all-btn" title="Delete all records from this browser">
+          Clear All Data
+        </button>
+      </div>
+
+      <div class="table-wrapper" id="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>DWG Number</th>
+              <th>DWG Name</th>
+              <th>Project / Site</th>
+              <th>Status</th>
+              <th>Added On</th>
+            </tr>
+          </thead>
+          <tbody id="dwg-table-body">
+          </tbody>
+        </table>
+      </div>
+      <div id="empty-state" class="empty-state" style="display:none;">
+        No drawings added yet. Add your first DWG above.
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>Made for my father by <strong>Durgesh Kushwaha</strong></span>
+      <span>Contact: <a href="mailto:durgeshcgc@gmail.com">durgeshcgc@gmail.com</a></span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
