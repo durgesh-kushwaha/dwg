@@ -58,7 +58,6 @@ function renderTable() {
     const haystack = [
       record.dwgNumber,
       record.dwgName,
-      record.projectName,
       record.notes,
     ]
       .filter(Boolean)
@@ -90,10 +89,6 @@ function renderTable() {
     const tdName = document.createElement("td");
     tdName.textContent = record.dwgName || "";
     tr.appendChild(tdName);
-
-    const tdProject = document.createElement("td");
-    tdProject.textContent = record.projectName || "";
-    tr.appendChild(tdProject);
 
     const tdStatus = document.createElement("td");
     const span = document.createElement("span");
@@ -137,7 +132,6 @@ function loadRecordIntoForm(id) {
   document.getElementById("record-id").value = record.id;
   document.getElementById("dwg-number").value = record.dwgNumber || "";
   document.getElementById("dwg-name").value = record.dwgName || "";
-  document.getElementById("project-name").value = record.projectName || "";
   document.getElementById("status").value = record.status || "Planned";
   document.getElementById("notes").value = record.notes || "";
 
@@ -157,13 +151,11 @@ function handleFormSubmit(event) {
   const idField = document.getElementById("record-id");
   const dwgNumberField = document.getElementById("dwg-number");
   const dwgNameField = document.getElementById("dwg-name");
-  const projectNameField = document.getElementById("project-name");
   const statusField = document.getElementById("status");
   const notesField = document.getElementById("notes");
 
   const dwgNumber = dwgNumberField.value.trim();
   const dwgName = dwgNameField.value.trim();
-  const projectName = projectNameField.value.trim();
   const status = statusField.value;
   const notes = notesField.value.trim();
 
@@ -200,7 +192,6 @@ function handleFormSubmit(event) {
       ...records[idx],
       dwgNumber,
       dwgName,
-      projectName,
       status,
       notes,
     };
@@ -220,7 +211,6 @@ function handleFormSubmit(event) {
           ...existingRecord,
           dwgNumber,
           dwgName,
-          projectName,
           status,
           notes,
         };
@@ -238,7 +228,6 @@ function handleFormSubmit(event) {
       id: generateId(),
       dwgNumber,
       dwgName,
-      projectName,
       status,
       notes,
       createdAt: now,
